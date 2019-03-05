@@ -10,8 +10,8 @@ from src.follow_protocol import follow_protocol
 from src.unfollow_protocol import unfollow_protocol
 
 bot = InstaBot(
-    login="chronicallycapable",  # Enter username (lowercase). Do not enter email!
-    password="groupten123",
+    login="",  # Enter username (lowercase). Do not enter email!
+    password="",
     like_per_day=600,
     comments_per_day=0,
     tag_list=["chronicillness",	"chronicpain",	"chronicillness",	"chronicpain",	"chronicdisease",	"wfh",	"lymewarrior",	"lymedisease",	"invisibleillness",	"painsucks",	"cancersucks",	"autoimmunedisease",	"cancerawareness",	"beatcancer",	"cancersupport",	"chrons",	"lupus",	"healthanxiety",	"fibrowarrior",	"healthanxiety",	"chronickidneydisease",	"tickbornedisease",	"painsucks",	"spoonie",	"butyoudontlooksick",	"workfromhome",	"lupus",	"themighty",	"friendsinthefight",	"fastcompany",	"fuckcancer",	"sufferingthesilence",	"spooniestrong",	"remission",	"autoimmune",	"chronicpainwarrior",	"autoimmunewarrior",	"spoonielife",	"spooniesisters",	"lymedontkillmyvibe",	"lyme",	"endo",	"anxiety",	"chronicpainawareness",	"invisibleillnesswarrior",	"spooniesupport",	"chronicfatigue",	"youdontlooksick",	"ehlersdanlos",	"selfcarematters",	"chroniclife",	"disability",	"spooniewarrior",	"mentalhealthday",	"butyoudontlooksick",	"communitymatters",	"chronicillnesslife",	"invisibleillnessawareness",	"selfcarematters",	"spooniesister",	"invisibledisability",	"sufferingthesilence",	"asl",	"deafcommunity",	"americansignlanguage",	"therapy",	"depression",	"mentalillnessawareness",	"speakyourtruth",	"healthcareisahumanright",	"bethechange",	"diabetesawareness",	"accessibility",	"type1diabetes",	"type1life",	"womenshealth",	"insulinpump",	"disabled",	"imapreexistingcondition",	"potsie",	"dysautonomia",	"crps",	"wheelchairlife",	"disabledandcute",	"depressionwareness",	"anxietyquote",	"chronicdisease"],
