@@ -1,37 +1,67 @@
-# InstaBot
+# Instabot.py 🤖 🌟
 
-Instabot is a toolkit written in Python for building Instagram bots using the undocumented private API.
-
-Please do not clone this repo and publish it as your own. Fork the repo if you wish to publish any changes.
+**Instabot.py** is an extremely light instagram bot that uses the undocumented Web API. Unlike other bots, Instabot.py does _not_ require Selenium or a WebDriver. Instead, it interacts with the API over simple HTTP Requests. It runs on most systems, including Raspberry Pi.
 
 [![Donate](https://img.shields.io/badge/PayPal-Donate%20to%20Author-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=7BMM6JGE73322&lc=US)
 [![Chat on Telegram](https://img.shields.io/badge/Chat%20on-Telegram-brightgreen.svg)](https://t.me/joinchat/DYKH-0G_8hsDDoN_iE8ZlA)
-[![Chat on IRC](https://img.shields.io/badge/Chat%20on%20IRC-freenode.net%23instabot-brightgreen.svg)](https://kiwiirc.com/nextclient/irc.freenode.net/?nick=insta?#instabot)
-
+[![Latest version on](https://badge.fury.io/py/instabot-py.svg)](https://badge.fury.io/py/instabot-py)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/instabot-py.svg)](https://pypi.org/project/instabot-py/)
+<!-- [![Travis Pipelines build status](https://img.shields.io/travis/com/yurilaaziz/instabot-py.svg)](https://travis-ci.com/yurilaaziz/instabot-py/) -->
 
 ## Requirements
 
 - Python v3.6 or greater
-- pip v18 or greater
-- Install requirements.txt (requests, fake-useragent, instaloader)
+- Pip v18 or greater
 
-## Getting started
 
-- `git clone https://github.com/instabot-py/instabot.py.git && cd instabot.py` or [download zip](https://github.com/instabot-py/instabot.py/archive/master.zip).
+## Quick Start 🚀
 
-- Head into your virtual environment and use `pip` or `pip3` depending on your installation:
-```
-pip3 install -r requirements.txt
-```
+- **Make sure you have Python 3.6 or above installed**
 
-- For a quick & dirty test run, use `run.py`
-```
-python3 run.py
-```
-Depending on your operating system and python installation, you might need to use `py`, `python`, or `python3`.
+  - `python3 --version`
 
-- To set extra parameters and more sophisticated configurations, copy and edit `example.py` and run.
+On Windows you might have to use `python` without the version (`3`) suffix. Experienced users should use virtualenv.
 
+- **If your version is below 3.6, we recommend you install the latest Python 3.7**
+
+  - [Python on Windows](https://github.com/instabot-py/instabot.py/wiki/Installing-Python-on-Windows)
+  - [Python on Mac](https://github.com/instabot-py/instabot.py/wiki/Installing-Python-3.7-on-macOS)
+  - [Python on Raspberry Raspbian / Debian / Ubuntu](https://github.com/instabot-py/instabot.py/wiki/Installing-Python-3.7-on-Raspberry-Pi)
+
+- **Install instabot.py from PyPi repository**
+
+  - `python3 -m pip install instabot-py`
+
+- **Start the bot** 🏁
+
+  - `instabot-py`
+  - or `python3 -m instabot_py`
+  - For more advanced parameters and configurations download and edit [example.py](https://raw.githubusercontent.com/instabot-py/instabot.py/master/example.py) and run `python3 example.py`
+
+- **Config** ⚙️
+
+When you first run `instabot-py` a file called `config.ini` will be created in your current directory, along with an SQLite DB, and an error.log.
+
+After the initial configuration, you can manually edit `config.ini` with a text editor. Restart the bot for changes to take effect.
+
+The `%username%.db` file contains a record of the posts the bot has liked, and the users it has followed/unfollowed.
+
+The `%username%.session` file stores your session with Instagram to avoid re-logins each time you start the bot.
+
+
+## Upgrade ⬆️
+
+- `python3 -m pip install instabot-py --no-cache-dir --upgrade`
+
+## Install methods
+
+**Recommended: From PyPi:** (Stable)
+
+- `python3 -m pip install instabot-py`
+
+**From sources:**  (Bleeding edge)
+
+- `python3 -m pip install git+https://github.com/instabot-py/instabot.py`
 
 ## Parameters
 | Parameter            | Type|                Description                           |        Default value             |
@@ -57,7 +87,7 @@ Depending on your operating system and python installation, you might need to us
 | unlike_per_day     | int | Number of media to unlike that the bot has previously liked. Set to 0 to disable.                           | 0    |
 | time_till_unlike     | int | How long to wait after liking media before unliking them. | 3 * 24 * 60 * 60 (3 days) |
 | comments_per_day     | int | Comments to post per day                             | 0    |
-| comment_list         | [[str]] | List of word lists for comment generation        | [['this', 'your'], ['photo', 'picture', 'pic', 'shot'], ['is', 'looks', 'is really'], ['great', 'super', 'good'], ['.', '...', '!', '!!']] |
+| comment_list         | [[str]] | List of word lists for comment generation. @username@ will be replaced by the media owner's username     | [['this', 'your'], ['photo', 'picture', 'pic', 'shot'], ['is', 'looks', 'is really'], ['great', 'super', 'good'], ['.', '...', '!', '!!']] |
 | tag_list             | [str] | Tags to use for finding posts by hasthag or location(l:locationid from e.g. https://www.instagram.com/explore/locations/212999109/los-angeles-california/)                     | ['cat', 'car', 'dog', 'l:212999109'] |
 | tag_blacklist        | [str] | Tags to ignore when liking posts                   | [] |
 | user_blacklist       | {str: str} | Users whose posts to ignore. Example: `{"username": "", "username2": ""}` type only the key and leave value empty -- it will be populated with userids on startup.                | {} |
@@ -66,6 +96,11 @@ Depending on your operating system and python installation, you might need to us
 | unfollow_break_max   | int | Maximum seconds to break between unfollows           | 30 |
 | log_mod              | int | Logging target (0 log to console, 1 log to file, 2 no log.) | 0 |
 | proxy                | str | Access instagram through a proxy. (host:port or user:password@host:port) | |
+| unfollow_not_following   | bool | Unfollow Condition: Unfollow those who do not follow you back | True |
+| unfollow_inactive   | bool | Unfollow Condition: Unfollow those who have not posted in a while (inactive) | True |
+| unfollow_probably_fake  | bool | Unfollow Condition: Unfollow accounts which skewed follow/follower ratio (probably fake) | True |
+| unfollow_selebgram  | bool | Unfollow Condition: Unfollow (celebrity) accounts with too many followers and not enough following | False |
+| unfollow_everyone  | bool | Unfollow Condition: Will unfollow everyone in unfollow queue (wildcard condition) | False |
 
 ## Methods
 | Method | Description |
@@ -79,7 +114,7 @@ Depending on your operating system and python installation, you might need to us
 | unfollow(id) | Unfollow the user with the given ID. |
 | logout() | Log out of Instagram. |
 
-## Usage examples
+<!-- ## Usage examples
 Basic bot implementation:
 ```py
 bot = InstaBot('login', 'password')
@@ -115,6 +150,9 @@ bot.like_all_exist_media(4)
 The following video tutorials demo setting up and running the bot:
 * [Windows](https://www.youtube.com/watch?v=V8P0UCrACA0)
 * [Mac/Linux](https://www.youtube.com/watch?v=ASO-cZO6uqo)
+-->
+
+
 
 ## Community
 
